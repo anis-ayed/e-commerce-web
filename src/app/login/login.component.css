@@ -1,0 +1,11 @@
+.container {
+  background: url('../../assets/login-backround.jpg');
+}
+
+mat-card {
+  padding-top: 1px;
+}
+
+button {
+  width: 100%;
+}
