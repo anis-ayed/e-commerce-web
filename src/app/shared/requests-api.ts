@@ -1,4 +1,4 @@
-import {catchError, finalize, map, Observable, of, throwError} from "rxjs";
+import {catchError, map, Observable, of, throwError} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SNACKBAR_ACTION, SNACKBAR_ERROR_CONFIGURATION, SNACKBAR_SUCCESS_CONFIGURATION} from "./snackbarActions";
 import {inject} from "@angular/core";
