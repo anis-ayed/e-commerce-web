@@ -4,8 +4,8 @@ import {SNACKBAR_ACTION, SNACKBAR_ERROR_CONFIGURATION, SNACKBAR_SUCCESS_CONFIGUR
 import {inject} from "@angular/core";
 
 export type MessageApi = {
-  successMessage: string;
-  errorMessage: string;
+  successMessage?: string;
+  errorMessage?: string;
 }
 
 /**
@@ -14,10 +14,7 @@ export type MessageApi = {
  */
 export class Api<T> {
   // Observable to track the progress of an API action
-  action$!: Observable<boolean>;
-
-  // Observable to track the progress of an API action
-  data: T | T[] | null = null;
+  action$!: Observable<T>;
 
   // Flags to track the progress and status of the API action
   progress: boolean = false;
@@ -32,32 +29,31 @@ export class Api<T> {
    * @param messages - Object containing success and error messages for notification
    * @returns Observable<boolean> indicating the progress and completion status of the API action
    */
-  public execute(obs: Observable<T>, messages: MessageApi): Observable<boolean> {
+  public execute(obs: Observable<T>, messages: MessageApi): Observable<T> {
     if (!!obs) {
       this.updateState(true, false);
       this.action$ =  obs.pipe(
         catchError((error) => {
           this.hasError = true;
-          this.data = null;
-          const message: string = (error.error.message)
-            ? `${error.error.message}`
-            : messages.errorMessage;
+          const message: string = (error.error?.message)
+            ? `${error.error?.message}`
+            : messages?.errorMessage;
           this.showNotification(message, SNACKBAR_ACTION.CLOSE, SNACKBAR_ERROR_CONFIGURATION);
           return throwError(error);
         }),
         map(response => {
           // Handle API success
-          this.data = response;
           this.updateState(false, true);
+          if (!!messages.successMessage)
           this.showNotification(messages.successMessage, SNACKBAR_ACTION.OK, SNACKBAR_SUCCESS_CONFIGURATION);
-          return true;
+          return response;
         })
       );
       return this.action$;
     }
 
     // Return an Observable with a false value if the provided Observable is null
-    return of(false);
+    return of(null);
   }
 
   /**

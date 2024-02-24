@@ -65,11 +65,13 @@ export class LoginComponent implements OnInit {
         this.authService.login({username, password}),
         {successMessage: LOGIN_SUCCESS, errorMessage: LOGIN_ERROR})
       .subscribe(() => {
-       if (UserStorageService.isAdminLoggedIn()) {
+        if (UserStorageService.isAdminLoggedIn()) {
          this.router.navigateByUrl('/admin/dashboard');
-         return;
+       } else if (UserStorageService.isCustomerLoggedIn()) {
+         this.router.navigateByUrl('/customer/dashboard');
+       } else {
+         this.router.navigateByUrl('/authenticate');
        }
-        this.router.navigateByUrl('/customer/dashboard')
       });
 
   }
