@@ -8,3 +8,6 @@ export const ADD_ITEM_SUCCESS = 'Post # successfully';
 export const ADD_ITEM_ERROR = 'Add # failed!';
 export const GET_CATEGORIES_ERROR = 'Get list of categories failed!';
 export const GET_PRODUCTS_ERROR = 'Get list of products failed!';
+export const HTTP_REQUEST_ERROR = 'Something went wrong!';
+
+export const DELETE_ITEM_SUCCESS = 'Delete # successfully';

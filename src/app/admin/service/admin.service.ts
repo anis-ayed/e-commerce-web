@@ -37,4 +37,16 @@ export class AdminService {
       headers: createAuthorizationHeaders()
     });
   }
+
+  getAllProductsByName(name: string): Observable<Product[]> {
+    return this.http.get<Product[]>(ADMIN_BASE_URI + '/products/search/' + name, {
+      headers: createAuthorizationHeaders()
+    });
+  }
+
+  deleteProductById(idProduct: number): Observable<any> {
+    return this.http.delete(ADMIN_BASE_URI + '/products/' + idProduct, {
+      headers: createAuthorizationHeaders()
+    });
+  }
 }
