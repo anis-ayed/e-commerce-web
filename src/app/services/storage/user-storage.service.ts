@@ -29,9 +29,9 @@ export class UserStorageService {
     return JSON.parse(localStorage.getItem(USER));
   }
 
-  static getUserId(): string {
+  static getUserId(): number {
     const user: LoginResponse = this.getUser();
-    return user.userId ?? '';
+    return Number(user.userId) ?? 0;
   }
 
   static getUserRole(): string {

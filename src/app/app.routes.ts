@@ -26,6 +26,16 @@ export const routes: Routes = [
         path: 'products',
         loadComponent: () => import('../app/admin/components/product/product.component')
           .then(c => c.ProductComponent)
+      },
+      {
+        path: 'post-coupon',
+        loadComponent: () => import('../app/admin/components/post-coupon/post-coupon.component')
+          .then(c => c.PostCouponComponent)
+      },
+      {
+        path: 'coupons',
+        loadComponent: () => import('../app/admin/components/coupons/coupons.component')
+          .then(c => c.CouponsComponent)
       }
     ]
   },
@@ -39,6 +49,11 @@ export const routes: Routes = [
         path: 'dashboard',
         loadComponent: () => import('../app/customer/components/dashboard/dashboard.component')
           .then(c => c.DashboardComponent)
+      },
+      {
+        path: 'cart',
+        loadComponent: () => import('../app/customer/components/cart/cart.component')
+          .then(c => c.CartComponent)
       }
     ]
   },

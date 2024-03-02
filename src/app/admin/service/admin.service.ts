@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {ADMIN_BASE_URI} from "../../shared/config";
 import {createAuthorizationHeaders} from "../../shared/utils";
 import {Product} from "../../models/Product";
+import {Coupon} from "../../models/Coupon";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,6 @@ export class AdminService {
   }
 
   addProduct(product: FormData): Observable<Product> {
-    console.log(ADMIN_BASE_URI + '/products')
     return this.http.post<Product>(ADMIN_BASE_URI + '/products', product, {
       headers: createAuthorizationHeaders()
     });
@@ -46,6 +46,18 @@ export class AdminService {
 
   deleteProductById(idProduct: number): Observable<any> {
     return this.http.delete(ADMIN_BASE_URI + '/products/' + idProduct, {
+      headers: createAuthorizationHeaders()
+    });
+  }
+
+  addCoupon(coupon: Coupon): Observable<Coupon> {
+    return this.http.post<Coupon>(ADMIN_BASE_URI + '/coupons', coupon, {
+      headers: createAuthorizationHeaders()
+    });
+  }
+
+  getAllCoupons(): Observable<Coupon[]> {
+    return this.http.get<Coupon[]>(ADMIN_BASE_URI + '/coupons', {
       headers: createAuthorizationHeaders()
     });
   }
