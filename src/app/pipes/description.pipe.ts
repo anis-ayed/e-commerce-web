@@ -7,7 +7,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DescriptionPipe implements PipeTransform {
 
   transform(description: string, nbChars: number): string {
-    return description.substring(nbChars) + '...';
+    if (nbChars < description?.length) {
+      return description.substring(nbChars) + '...';
+    }
+    return description;
   }
 
 }

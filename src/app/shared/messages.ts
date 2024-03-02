@@ -11,3 +11,5 @@ export const GET_PRODUCTS_ERROR = 'Get list of products failed!';
 export const HTTP_REQUEST_ERROR = 'Something went wrong!';
 
 export const DELETE_ITEM_SUCCESS = 'Delete # successfully';
+
+export const INPUT_IS_REQUIRED = 'This input is required';
