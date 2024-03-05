@@ -1,12 +1,16 @@
-import {catchError, map, Observable, of, throwError} from "rxjs";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {SNACKBAR_ACTION, SNACKBAR_ERROR_CONFIGURATION, SNACKBAR_SUCCESS_CONFIGURATION} from "./snackbarActions";
-import {inject} from "@angular/core";
+import { catchError, map, Observable, of, throwError } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+  SNACKBAR_ACTION,
+  SNACKBAR_ERROR_CONFIGURATION,
+  SNACKBAR_SUCCESS_CONFIGURATION,
+} from './snackbarActions';
+import { inject } from '@angular/core';
 
 export type MessageApi = {
   successMessage?: string;
   errorMessage?: string;
-}
+};
 
 /**
  * Generic class for handling API operations
@@ -22,7 +26,6 @@ export class Api<T> {
   hasError: boolean = false;
   private matSnackbar: MatSnackBar = inject(MatSnackBar);
 
-
   /**
    * Execute an API action and return an Observable<boolean> to track its progress
    * @param obs - Observable representing the API action
@@ -30,24 +33,32 @@ export class Api<T> {
    * @returns Observable<boolean> indicating the progress and completion status of the API action
    */
   public execute(obs: Observable<T>, messages: MessageApi): Observable<T> {
-    if (!!obs) {
+    if (obs) {
       this.updateState(true, false);
-      this.action$ =  obs.pipe(
-        catchError((error) => {
+      this.action$ = obs.pipe(
+        catchError(error => {
           this.hasError = true;
-          const message: string = (error.error?.message)
+          const message: string = error.error?.message
             ? `${error.error?.message}`
             : messages?.errorMessage;
-          this.showNotification(message, SNACKBAR_ACTION.CLOSE, SNACKBAR_ERROR_CONFIGURATION);
+          this.showNotification(
+            message,
+            SNACKBAR_ACTION.CLOSE,
+            SNACKBAR_ERROR_CONFIGURATION,
+          );
           return throwError(error);
         }),
         map(response => {
           // Handle API success
           this.updateState(false, true);
-          if (!!messages.successMessage)
-          this.showNotification(messages.successMessage, SNACKBAR_ACTION.OK, SNACKBAR_SUCCESS_CONFIGURATION);
+          if (messages.successMessage)
+            this.showNotification(
+              messages.successMessage,
+              SNACKBAR_ACTION.OK,
+              SNACKBAR_SUCCESS_CONFIGURATION,
+            );
           return response;
-        })
+        }),
       );
       return this.action$;
     }
@@ -66,18 +77,17 @@ export class Api<T> {
     this.isFinished = isFinished;
   }
 
-
   /**
    * Helper method to display a notification using MatSnackBar
    * @param message - Notification message
    * @param action - Notification action
    * @param configuration - Configuration options for MatSnackBar
    */
-  private showNotification(message: string, action: string, configuration: any) {
-    this.matSnackbar.open(
-      message,
-      action,
-      configuration
-    );
+  private showNotification(
+    message: string,
+    action: string,
+    configuration: object,
+  ) {
+    this.matSnackbar.open(message, action, configuration);
   }
 }

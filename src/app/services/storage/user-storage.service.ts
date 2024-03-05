@@ -1,16 +1,15 @@
-import {Injectable} from '@angular/core';
-import {LoginResponse} from "../../models/LoginResponse";
-import {UserRole} from "../../enums/UserRole";
+import { Injectable } from '@angular/core';
+import { LoginResponse } from '../../models/LoginResponse';
+import { UserRole } from '../../enums/UserRole';
 
 const TOKEN = 'ecom-token';
 const USER = 'ecom-user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserStorageService {
-
-  constructor() { }
+  constructor() {}
   public saveToken(token: string): void {
     window.localStorage.removeItem(TOKEN);
     window.localStorage.setItem(TOKEN, token);

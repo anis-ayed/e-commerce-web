@@ -1,4 +1,4 @@
-import {UserRole} from "../enums/UserRole";
+import { UserRole } from '../enums/UserRole';
 
 export class User {
   private name!: string;
@@ -7,8 +7,13 @@ export class User {
   private password?: string;
   private confirmPassword?: string;
 
-
-  constructor(name: string, email: string, role: UserRole, password: string, confirmPassword: string) {
+  constructor(
+    name: string,
+    email: string,
+    role: UserRole,
+    password: string,
+    confirmPassword: string,
+  ) {
     this.name = name;
     this.email = email;
     this.role = role;
