@@ -14,3 +14,4 @@ export const HTTP_REQUEST_ERROR = 'Something went wrong!';
 export const DELETE_ITEM_SUCCESS = 'Delete # successfully';
 
 export const INPUT_IS_REQUIRED = 'This input is required';
+export const PLACED_ORDER_SUCCESS = 'Order placed successfully';

@@ -16,6 +16,8 @@ import {MatButton, MatIconButton} from "@angular/material/button";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
+import {MatDialog} from "@angular/material/dialog";
+import {PlaceOrderComponent} from "../place-order/place-order.component";
 
 @Component({
   selector: 'app-cart',
@@ -45,6 +47,7 @@ export class CartComponent implements OnInit {
   couponForm: FormGroup;
   private customerService: CustomerService = inject(CustomerService);
   private formBuilder: FormBuilder = inject(FormBuilder);
+  private dialog: MatDialog = inject(MatDialog);
 
   ngOnInit(): void {
     this.couponForm = this.formBuilder.group({
@@ -85,5 +88,9 @@ export class CartComponent implements OnInit {
     this.api.execute(this.customerService.decreaseProductQuantity(productId), {
       errorMessage: DELETE_ITEM_SUCCESS.replace('#', 'product')
     }).subscribe(() => this.getCart());
+  }
+
+  placeOrder(): void {
+    this.dialog.open(PlaceOrderComponent);
   }
 }
