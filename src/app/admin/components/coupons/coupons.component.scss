@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.coupon-card {
+  margin: 10px;
+  width: 300px;
+
+  mat-card-header {
+    background-color: #7e43f5; // Green, adjust as needed
+    color: white;
+
+    mat-card-title, mat-card-subtitle {
+      color: white;
+    }
+  }
+
+  mat-card-content {
+    padding: 16px;
+  }
+}

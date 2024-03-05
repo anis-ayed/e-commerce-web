@@ -1,1 +1,14 @@
-<p>coupons works!</p>
+<div class="container">
+  @for (coupon of coupons; track coupon.id) {
+    <mat-card class="coupon-card">
+      <mat-card-header>
+        <mat-card-title>{{ coupon.name }}</mat-card-title>
+        <mat-card-subtitle>{{ coupon.code }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Discount: {{ coupon.discount }}</p>
+        <p>Expiration Date: {{ coupon.expirationDate | date }}</p>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>
