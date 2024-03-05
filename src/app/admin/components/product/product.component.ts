@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 import {AdminService} from "../../service/admin.service";
 import {Api} from "../../../shared/requests-api";
 import {Product} from "../../../models/Product";
-import {ADD_ITEM_ERROR, ADD_ITEM_SUCCESS, GET_CATEGORIES_ERROR} from "../../../shared/messages";
+import {ADD_ITEM_ERROR, ADD_ITEM_SUCCESS, GET_ITEMS_ERROR} from "../../../shared/messages";
 
 @Component({
   selector: 'app-product',
@@ -100,7 +100,7 @@ export class ProductComponent implements OnInit {
 
   private getAllCategories() {
     this.apiCategories.execute(this.adminService.getAllCategories(), {
-      errorMessage: GET_CATEGORIES_ERROR
+      errorMessage: GET_ITEMS_ERROR.replace('#', "categories")
     }).subscribe((data: Category[]) => this.listOfCategories = data);
   }
 }

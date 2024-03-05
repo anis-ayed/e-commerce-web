@@ -100,4 +100,6 @@ export class DashboardComponent implements OnInit {
         errorMessage: ADD_ITEM_ERROR.replace('#', 'product to cart')})
       .subscribe();
   }
+
+  protected readonly of = of;
 }

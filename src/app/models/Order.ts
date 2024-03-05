@@ -13,5 +13,6 @@ export interface Order {
   discount: number;
   trackingId: string;
   userName: string;
+  couponName: string;
   cartItems: Cart[];
 }
