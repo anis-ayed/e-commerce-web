@@ -1,5 +1,5 @@
-import {Cart} from "./Cart";
-import {OrderStatus} from "../enums/OrderStatus";
+import { Cart } from './Cart';
+import { OrderStatus } from '../enums/OrderStatus';
 
 export interface Order {
   id: number;
