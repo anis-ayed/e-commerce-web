@@ -1,0 +1,23 @@
+<div class="container">
+  <form [formGroup]="orderForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address" placeholder="Address" required>
+      @if (orderForm.get('address').hasError('required')) {
+        <mat-error>Address is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="orderDescription" placeholder="Order Description"></textarea>
+    </mat-form-field>
+
+    <div class="btn-actions">
+      <button mat-raised-button color="error" (click)="close()">Close</button>
+      <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
+    </div>
+
+  </form>
+</div>
+
