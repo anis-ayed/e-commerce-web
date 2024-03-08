@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Product } from '../../models/Product';
 import { CUSTOMER_BASE_URI } from '../../shared/config';
 import { createAuthorizationHeaders } from '../../shared/utils';
@@ -15,18 +15,19 @@ import { PlaceOrder } from '../../models/PlaceOrder';
 export class CustomerService {
   constructor(private http: HttpClient) {}
   getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(CUSTOMER_BASE_URI + '/products', {
-      headers: createAuthorizationHeaders(),
-    });
+    return this.http
+      .get<Product[]>(CUSTOMER_BASE_URI + '/products', {
+        headers: createAuthorizationHeaders(),
+      })
+      .pipe(take(1));
   }
 
   getAllProductsByName(name: string): Observable<Product[]> {
-    return this.http.get<Product[]>(
-      CUSTOMER_BASE_URI + '/products/search/' + name,
-      {
+    return this.http
+      .get<Product[]>(CUSTOMER_BASE_URI + '/products/search/' + name, {
         headers: createAuthorizationHeaders(),
-      },
-    );
+      })
+      .pipe(take(1));
   }
 
   addToCart(productId: number): Observable<Product[]> {
@@ -38,19 +39,20 @@ export class CustomerService {
 
   getCartByUserId(): Observable<Order> {
     const userId: number = UserStorageService.getUserId();
-    return this.http.get<Order>(CUSTOMER_BASE_URI + '/cart/' + userId, {
-      headers: createAuthorizationHeaders(),
-    });
+    return this.http
+      .get<Order>(CUSTOMER_BASE_URI + '/cart/' + userId, {
+        headers: createAuthorizationHeaders(),
+      })
+      .pipe(take(1));
   }
 
   applyCoupon(code: string): Observable<Order> {
     const userId: number = UserStorageService.getUserId();
-    return this.http.get<Order>(
-      CUSTOMER_BASE_URI + `/coupon/${userId}/${code}`,
-      {
+    return this.http
+      .get<Order>(CUSTOMER_BASE_URI + `/coupon/${userId}/${code}`, {
         headers: createAuthorizationHeaders(),
-      },
-    );
+      })
+      .pipe(take(1));
   }
 
   increaseProductQuantity(productId: number): Observable<Product[]> {

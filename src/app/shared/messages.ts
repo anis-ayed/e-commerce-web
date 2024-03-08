@@ -15,3 +15,5 @@ export const DELETE_ITEM_SUCCESS = 'Delete # successfully';
 
 export const INPUT_IS_REQUIRED = 'This input is required';
 export const PLACED_ORDER_SUCCESS = 'Order placed successfully';
+export const UPDATE_ORDER_STATUS_SUCCESS =
+  'Order status with id: #  has been updated';

@@ -6,10 +6,12 @@ import {
   SNACKBAR_SUCCESS_CONFIGURATION,
 } from './snackbarActions';
 import { inject } from '@angular/core';
+import { SpinnerService } from '../services/spinner.service';
 
-export type MessageApi = {
+export type ConfigApi = {
   successMessage?: string;
   errorMessage?: string;
+  spinner?: boolean;
 };
 
 /**
@@ -25,22 +27,25 @@ export class Api<T> {
   isFinished: boolean = true;
   hasError: boolean = false;
   private matSnackbar: MatSnackBar = inject(MatSnackBar);
+  private spinner: SpinnerService = inject(SpinnerService);
 
   /**
    * Execute an API action and return an Observable<boolean> to track its progress
    * @param obs - Observable representing the API action
-   * @param messages - Object containing success and error messages for notification
+   * @param configApi - Object containing success and error messages for notification
    * @returns Observable<boolean> indicating the progress and completion status of the API action
    */
-  public execute(obs: Observable<T>, messages: MessageApi): Observable<T> {
+  public execute(obs: Observable<T>, configApi: ConfigApi): Observable<T> {
     if (obs) {
+      if (configApi.spinner) this.spinner.show();
       this.updateState(true, false);
       this.action$ = obs.pipe(
         catchError(error => {
           this.hasError = true;
+          if (configApi.spinner) this.spinner.hide();
           const message: string = error.error?.message
             ? `${error.error?.message}`
-            : messages?.errorMessage;
+            : configApi?.errorMessage;
           this.showNotification(
             message,
             SNACKBAR_ACTION.CLOSE,
@@ -51,12 +56,13 @@ export class Api<T> {
         map(response => {
           // Handle API success
           this.updateState(false, true);
-          if (messages.successMessage)
+          if (configApi.successMessage)
             this.showNotification(
-              messages.successMessage,
+              configApi.successMessage,
               SNACKBAR_ACTION.OK,
               SNACKBAR_SUCCESS_CONFIGURATION,
             );
+          if (configApi.spinner) this.spinner.hide();
           return response;
         }),
       );

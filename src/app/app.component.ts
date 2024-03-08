@@ -8,7 +8,9 @@ import {
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatButton } from '@angular/material/button';
 import { UserStorageService } from './services/storage/user-storage.service';
-import { NgIf } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { NgxLoadingModule } from 'ngx-loading';
+import { SpinnerService } from './services/spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -20,17 +22,20 @@ import { NgIf } from '@angular/common';
     RouterLink,
     RouterLinkActive,
     NgIf,
+    NgxLoadingModule,
+    AsyncPipe,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-  title = 'ECommerceWeb';
-
   isAdminLoggedIn: boolean = UserStorageService.isAdminLoggedIn();
   isCustomerLoggedIn: boolean = UserStorageService.isCustomerLoggedIn();
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    public spinnerService: SpinnerService,
+  ) {}
 
   ngOnInit(): void {
     this.router.events.subscribe(() => {

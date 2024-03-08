@@ -51,6 +51,13 @@ export const routes: Routes = [
             c => c.CouponsComponent,
           ),
       },
+      {
+        path: 'orders',
+        loadComponent: () =>
+          import('../app/admin/components/orders/orders.component').then(
+            c => c.OrdersComponent,
+          ),
+      },
     ],
   },
   {

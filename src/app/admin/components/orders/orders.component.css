@@ -1,0 +1,29 @@
+.container {
+  margin: 20px;
+}
+
+mat-card {
+  width: 100%;
+}
+
+mat-table {
+  width: 100%;
+  overflow: auto;
+}
+
+mat-row, mat-header-row {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+mat-cell, mat-header-cell {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-bottom: 1px solid #ccc;
+}
