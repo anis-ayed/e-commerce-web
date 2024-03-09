@@ -1,46 +1,24 @@
-<div class="search-container">
-  <form [formGroup]="searchProductsForm" class="search-form">
-    <mat-form-field appearance="outline" class="search-input">
-      <mat-label>Enter keyword to search</mat-label>
-      <input matInput formControlName="searchInput">
-      <button mat-button matSuffix color="primary" [disabled]="searchProductsForm.invalid">
-        <mat-icon>search</mat-icon>
-      </button>
-    </mat-form-field>
-  </form>
-</div>
-<div class="product-list">
-  @for (product of products; track product.id) {
-    <mat-card class="product-card">
-      <mat-card-content>
-        <div class="product-image">
-          <img [src]="product.processedImg" alt="product-image">
-        </div>
 
-        <div class="product-details">
-          <h2 class="product-name">{{ product.name }}</h2>
-          <p class="product-description">{{ product.description | description: 100 }}</p>
-          <mat-divider></mat-divider>
-
-          <div class="product-info">
-            <div class="info-row">
-              <span class="info-label">Price:</span>
-              <span class="info-value">€ {{ product.price }}</span>
-            </div>
-
-            <div class="info-row">
-              <span class="info-label">Category:</span>
-              <span class="info-value">{{ product.categoryName }}</span>
-            </div>
-          </div>
-        </div>
-      </mat-card-content>
-
-      <mat-card-actions>
-        <button mat-raised-button color="primary" class="update-button"
-                (click)="addToCart(product.id)">Add to cart
+<div class="dashboard">
+  <div class="search">
+    <form [formGroup]="searchProductsForm" class="search-form">
+      <mat-form-field appearance="outline" class="search-input">
+        <mat-label>Enter keyword to search</mat-label>
+        <input matInput formControlName="searchInput">
+        <button mat-button matSuffix color="primary" [disabled]="searchProductsForm.invalid">
+          <mat-icon>search</mat-icon>
         </button>
-      </mat-card-actions>
-    </mat-card>
-  }
+      </mat-form-field>
+    </form>
+  </div>
+
+  <mat-grid-list cols="4" rowHeight="2:2">
+    @for (product of products; track product.id) {
+      <mat-grid-tile>
+        <app-product [product]="product" (onAddToCart)="addToCart(product.id)"></app-product>
+      </mat-grid-tile>
+    }
+  </mat-grid-list>
 </div>
+
+

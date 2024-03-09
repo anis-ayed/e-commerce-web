@@ -24,7 +24,7 @@ import {
 } from '../../../shared/messages';
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-post-product',
   standalone: true,
   imports: [
     MatButton,
@@ -42,10 +42,10 @@ import {
     MatOption,
     NgForOf,
   ],
-  templateUrl: './product.component.html',
-  styleUrl: './product.component.scss',
+  templateUrl: './postProduct.component.html',
+  styleUrl: './postProduct.component.scss',
 })
-export class ProductComponent implements OnInit {
+export class PostProductComponent implements OnInit {
   productForm: FormGroup;
   selectedFile: File | null;
   imagePreview: string | ArrayBuffer | null;

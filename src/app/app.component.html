@@ -1,44 +1,42 @@
 
-<div *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn">
-<mat-toolbar color="primary" class="navbar">
-  <span class="navbar-brand">E-commerce</span>
-  <span class="spacer"></span>
-  <button mat-button routerLink="/order" routerLinkActive="active">Track Order 1</button>
-  <button mat-button routerLink="/sign-up" routerLinkActive="active">Register</button>
-  <button mat-button routerLink="/authenticate" routerLinkActive="active">Login</button>
-</mat-toolbar>
-</div>
-
-<div *ngIf="isAdminLoggedIn">
-  <mat-toolbar color="primary" class="navbar">
-    <span class="navbar-brand">E-commerce</span>
-    <span class="spacer"></span>
-    <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
-    <button mat-button routerLink="/admin/analytics" routerLinkActive="active">Analytics</button>
-    <button mat-button routerLink="/admin/categories" routerLinkActive="active">Category</button>
-    <button mat-button routerLink="/admin/products" routerLinkActive="active">Product</button>
-    <button mat-button routerLink="/admin/orders" routerLinkActive="active">Orders</button>
-    <button mat-button routerLink="/admin/post-coupon" routerLinkActive="active">Post Coupon</button>
-    <button mat-button routerLink="/admin/coupons" routerLinkActive="active">Coupons</button>
-    <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
-  </mat-toolbar>
-</div>
-
-<div *ngIf="isCustomerLoggedIn">
-  <mat-toolbar color="primary" class="navbar">
-    <span class="navbar-brand">E-commerce</span>
-    <span class="spacer"></span>
-    <button mat-button routerLink="/customer/dashboard" routerLinkActive="active">Dashboard</button>
-    <button mat-button routerLink="/customer/cart" routerLinkActive="active">Cart</button>
-    <button mat-button routerLink="/customer/my_orders" routerLinkActive="active">Orders</button>
-    <button mat-button routerLink="/customer/wishlist" routerLinkActive="active">Wishlist</button>
-    <button mat-button routerLink="/customer/profile" routerLinkActive="active">Profile</button>
-    <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
-  </mat-toolbar>
-</div>
-<div class="container">
-  <router-outlet></router-outlet>
-  @if(spinnerService.loading$()) {
-    <ngx-loading [show]="spinnerService.loading$()" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+  @if (!isCustomerLoggedIn && !isAdminLoggedIn) {
+    <mat-toolbar color="primary" class="navbar">
+      <span class="text-white">E-commerce</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="/order" routerLinkActive="active">Track Order 1</button>
+      <button mat-button routerLink="/sign-up" routerLinkActive="active">Register</button>
+      <button mat-button routerLink="/authenticate" routerLinkActive="active">Login</button>
+    </mat-toolbar>
   }
-</div>
+  @if (isAdminLoggedIn) {
+    <mat-toolbar color="primary" class="navbar">
+      <span class="navbar-brand">E-commerce</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
+      <button mat-button routerLink="/admin/analytics" routerLinkActive="active">Analytics</button>
+      <button mat-button routerLink="/admin/categories" routerLinkActive="active">Category</button>
+      <button mat-button routerLink="/admin/products" routerLinkActive="active">Product</button>
+      <button mat-button routerLink="/admin/orders" routerLinkActive="active">Orders</button>
+      <button mat-button routerLink="/admin/post-coupon" routerLinkActive="active">Post Coupon</button>
+      <button mat-button routerLink="/admin/coupons" routerLinkActive="active">Coupons</button>
+      <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
+    </mat-toolbar>
+  } @else if (isCustomerLoggedIn) {
+    <mat-toolbar color="primary" class="navbar">
+      <span class="navbar-brand">E-commerce</span>
+      <span class="spacer"></span>
+      <button mat-button routerLink="/customer/dashboard" routerLinkActive="active">Dashboard</button>
+      <button mat-button routerLink="/customer/cart" routerLinkActive="active">Cart</button>
+      <button mat-button routerLink="/customer/my-orders" routerLinkActive="active">Orders</button>
+      <button mat-button routerLink="/customer/wishlist" routerLinkActive="active">Wishlist</button>
+      <button mat-button routerLink="/customer/profile" routerLinkActive="active">Profile</button>
+      <button mat-button (click)="logout()" routerLinkActive="active">Logout</button>
+    </mat-toolbar>
+  }
+  <div class="container">
+    <router-outlet></router-outlet>
+    @if(spinnerService.loading$()) {
+      <ngx-loading [show]="spinnerService.loading$()" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+    }
+  </div>
+

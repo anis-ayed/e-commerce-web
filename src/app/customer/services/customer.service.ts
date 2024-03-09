@@ -71,8 +71,6 @@ export class CustomerService {
 
   placeOrder(placeOrder: PlaceOrder): Observable<Order> {
     placeOrder.userId = UserStorageService.getUserId();
-    placeOrder.orderDescription = 'Some order description';
-    placeOrder.address = 'Some delivery address';
     return this.http.post<Order>(
       CUSTOMER_BASE_URI + `/place-order`,
       placeOrder,
@@ -80,5 +78,12 @@ export class CustomerService {
         headers: createAuthorizationHeaders(),
       },
     );
+  }
+
+  getMyOrdersPlaced(): Observable<Order[]> {
+    const userId: number = UserStorageService.getUserId();
+    return this.http.get<Order[]>(CUSTOMER_BASE_URI + `/my-orders/${userId}`, {
+      headers: createAuthorizationHeaders(),
+    });
   }
 }

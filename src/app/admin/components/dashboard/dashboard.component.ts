@@ -31,6 +31,8 @@ import {
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { debounceTime, delay, of, switchMap } from 'rxjs';
+import { ProductComponent } from '../../../shared/components/product/product.component';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-dashboard',
@@ -50,6 +52,9 @@ import { debounceTime, delay, of, switchMap } from 'rxjs';
     MatInput,
     MatSuffix,
     MatIcon,
+    ProductComponent,
+    MatGridList,
+    MatGridTile,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

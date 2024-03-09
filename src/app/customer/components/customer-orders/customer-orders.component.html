@@ -1,0 +1,24 @@
+<div class="container">
+ <div class="card-list">
+   @if (orders().length) {
+     @for (order of orders(); track order.id) {
+       <mat-card>
+         <mat-card-header>
+           <mat-card-title>{{ order.orderDescription }}</mat-card-title>
+         </mat-card-header>
+         <mat-card-content>
+           <p><strong>Date: </strong><span>{{ order.date }}</span></p>
+           <p><strong>Status: </strong><span>{{ order.orderStatus }}</span></p>
+           <p><strong>Track ID : </strong><span>{{ order.trackingId }}</span></p>
+           <button mat-icon-button aria-label="View details">
+             <mat-icon>remove_red_eye</mat-icon>
+           </button>
+         </mat-card-content>
+       </mat-card>
+     }
+   } @else {
+     <h2>No orders found.</h2>
+   }
+ </div>
+</div>
+
