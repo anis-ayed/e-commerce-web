@@ -7,6 +7,7 @@ import { createAuthorizationHeaders } from '../../shared/utils';
 import { Product } from '../../models/Product';
 import { Coupon } from '../../models/Coupon';
 import { Order } from '../../models/Order';
+import { FAQ } from '../../models/FAQ';
 
 @Injectable({
   providedIn: 'root',
@@ -84,5 +85,11 @@ export class AdminService {
         headers: createAuthorizationHeaders(),
       })
       .pipe(take(1));
+  }
+
+  postFAQ(productId: number, faq: FAQ): Observable<FAQ> {
+    return this.http.post<FAQ>(ADMIN_BASE_URI + `/faq/${productId}`, faq, {
+      headers: createAuthorizationHeaders(),
+    });
   }
 }

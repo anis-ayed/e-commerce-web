@@ -25,6 +25,7 @@ import {
   MatDatepickerToggle,
 } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
 
 @Component({
   selector: 'app-post-coupon',
@@ -43,6 +44,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
+    MatCard,
+    MatCardHeader,
+    MatCardContent,
   ],
   templateUrl: './post-coupon.component.html',
   styleUrl: './post-coupon.component.scss',

@@ -32,6 +32,8 @@ import { MatInput } from '@angular/material/input';
 import { NgForOf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CustomerService } from '../../services/customer.service';
+import { ProductComponent } from '../../../shared/components/product/product.component';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-dashboard',
@@ -51,6 +53,9 @@ import { CustomerService } from '../../services/customer.service';
     NgForOf,
     ReactiveFormsModule,
     RouterLink,
+    ProductComponent,
+    MatGridList,
+    MatGridTile,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

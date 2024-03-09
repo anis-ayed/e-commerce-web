@@ -63,14 +63,13 @@ export class OrdersComponent implements OnInit {
   orders: WritableSignal<Order[]> = signal([]);
 
   displayedColumns: string[] = [
-    'id',
-    'orderDescription',
     'date',
-    'amount',
+    'orderDescription',
     'address',
-    'orderStatus',
-    'trackingId',
     'userName',
+    'amount',
+    'trackingId',
+    'orderStatus',
     'actions',
   ];
 

@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-
 export const routes: Routes = [
   {
     path: '',
@@ -33,8 +32,8 @@ export const routes: Routes = [
       {
         path: 'products',
         loadComponent: () =>
-          import('../app/admin/components/product/product.component').then(
-            c => c.ProductComponent,
+          import('./admin/components/post-product/postProduct.component').then(
+            c => c.PostProductComponent,
           ),
       },
       {
@@ -57,6 +56,13 @@ export const routes: Routes = [
           import('../app/admin/components/orders/orders.component').then(
             c => c.OrdersComponent,
           ),
+      },
+      {
+        path: 'faq/:productId',
+        loadComponent: () =>
+          import(
+            '../app/admin/components/post-product-faq/post-product-faq.component'
+          ).then(c => c.PostProductFaqComponent),
       },
     ],
   },
@@ -83,6 +89,13 @@ export const routes: Routes = [
           import('../app/customer/components/cart/cart.component').then(
             c => c.CartComponent,
           ),
+      },
+      {
+        path: 'my-orders',
+        loadComponent: () =>
+          import(
+            '../app/customer/components/customer-orders/customer-orders.component'
+          ).then(c => c.CustomerOrdersComponent),
       },
     ],
   },
