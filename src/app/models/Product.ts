@@ -6,4 +6,5 @@ export interface Product {
   processedImg: string;
   byteImg: string[];
   categoryName: string;
+  quantity: number;
 }

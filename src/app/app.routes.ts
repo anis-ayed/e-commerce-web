@@ -37,6 +37,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'products/:productId',
+        loadComponent: () =>
+          import(
+            './admin/components/update-product/update-product.component'
+          ).then(c => c.UpdateProductComponent),
+      },
+      {
         path: 'post-coupon',
         loadComponent: () =>
           import(
@@ -96,6 +103,20 @@ export const routes: Routes = [
           import(
             '../app/customer/components/customer-orders/customer-orders.component'
           ).then(c => c.CustomerOrdersComponent),
+      },
+      {
+        path: 'ordered-products/:orderId',
+        loadComponent: () =>
+          import(
+            '../app/customer/components/view-ordered-products/view-ordered-products.component'
+          ).then(c => c.ViewOrderedProductsComponent),
+      },
+      {
+        path: 'review/:productId',
+        loadComponent: () =>
+          import(
+            '../app/customer/components/review-ordered-product/review-ordered-product.component'
+          ).then(c => c.ReviewOrderedProductComponent),
       },
     ],
   },

@@ -3,20 +3,16 @@
   height: 450px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  margin: 5px;
-
 
   mat-card-content {
-    padding: 16px;
     display: flex;
     flex-direction: column;
-
     .product-image {
       flex: 0 0 50%;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
 
       img {
-        width: 150px;
+        width: 120px;
         height: auto;
         object-fit: cover;
       }
@@ -30,7 +26,7 @@
       }
 
       .product-description {
-        margin-bottom: 16px;
+        margin-bottom: 10px;
       }
 
       .product-info {
