@@ -10,10 +10,18 @@
            <p><strong>Date: </strong><span>{{ order.date }}</span></p>
            <p><strong>Status: </strong><span>{{ order.orderStatus }}</span></p>
            <p><strong>Track ID : </strong><span>{{ order.trackingId }}</span></p>
+
+         </mat-card-content>
+         <mat-card-footer>
            <button mat-icon-button aria-label="View details">
              <mat-icon>remove_red_eye</mat-icon>
            </button>
-         </mat-card-content>
+           @if (order.orderStatus === OrderStatus.Delivered) {
+             <button mat-flat-button aria-label="View details" [routerLink]="'/customer/ordered-products/' + order.id">
+               <div class="review"><mat-icon>chevron_right</mat-icon><span>Review</span></div>
+             </button>
+           }
+         </mat-card-footer>
        </mat-card>
      }
    } @else {

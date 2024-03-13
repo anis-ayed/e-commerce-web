@@ -92,4 +92,20 @@ export class AdminService {
       headers: createAuthorizationHeaders(),
     });
   }
+
+  updateProduct(productId: number, product: FormData): Observable<Product> {
+    return this.http.put<Product>(
+      ADMIN_BASE_URI + `/products/${productId}`,
+      product,
+      {
+        headers: createAuthorizationHeaders(),
+      },
+    );
+  }
+
+  getProductById(productId: number): Observable<Product> {
+    return this.http.get<Product>(ADMIN_BASE_URI + '/products/' + productId, {
+      headers: createAuthorizationHeaders(),
+    });
+  }
 }

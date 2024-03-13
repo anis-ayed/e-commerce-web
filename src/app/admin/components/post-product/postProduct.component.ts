@@ -22,6 +22,7 @@ import {
   ADD_ITEM_SUCCESS,
   GET_ITEMS_ERROR,
 } from '../../../shared/messages';
+import { appendFormDataProduct } from '../../../shared/utils';
 
 @Component({
   selector: 'app-post-product',
@@ -88,13 +89,11 @@ export class PostProductComponent implements OnInit {
 
   addProduct(): void {
     if (this.productForm.valid) {
-      const formData: FormData = new FormData();
-      formData.append('img', this.selectedFile);
-      formData.append('categoryId', this.productForm.get('categoryId').value);
-      formData.append('name', this.productForm.get('name').value);
-      formData.append('description', this.productForm.get('description').value);
-      formData.append('price', this.productForm.get('price').value);
-
+      const formData: FormData = appendFormDataProduct(
+        this.productForm,
+        true,
+        this.selectedFile,
+      );
       this.apiProducts
         .execute(this.adminService.addProduct(formData), {
           successMessage: ADD_ITEM_SUCCESS.replace('#', 'product'),

@@ -17,3 +17,12 @@ mat-card-header {
 mat-card-content {
   padding: 16px;
 }
+
+mat-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .review {
+    display: flex;
+  }
+}

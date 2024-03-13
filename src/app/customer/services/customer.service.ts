@@ -8,6 +8,7 @@ import { Cart } from '../../models/Cart';
 import { UserStorageService } from '../../services/storage/user-storage.service';
 import { Order } from '../../models/Order';
 import { PlaceOrder } from '../../models/PlaceOrder';
+import { OrderedProduct } from '../../models/OrderedProduct';
 
 @Injectable({
   providedIn: 'root',
@@ -85,5 +86,14 @@ export class CustomerService {
     return this.http.get<Order[]>(CUSTOMER_BASE_URI + `/my-orders/${userId}`, {
       headers: createAuthorizationHeaders(),
     });
+  }
+
+  getOrderedProductsByOrderId(orderId: number): Observable<OrderedProduct> {
+    return this.http.get<OrderedProduct>(
+      CUSTOMER_BASE_URI + `/ordered-product/${orderId}`,
+      {
+        headers: createAuthorizationHeaders(),
+      },
+    );
   }
 }

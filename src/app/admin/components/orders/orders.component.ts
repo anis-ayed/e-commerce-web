@@ -10,7 +10,7 @@ import { Api } from '../../../shared/requests-api';
 import { Order } from '../../../models/Order';
 import {
   HTTP_REQUEST_ERROR,
-  UPDATE_ORDER_STATUS_SUCCESS,
+  UPDATE_ITEM_SUCCESS,
 } from '../../../shared/messages';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import {
@@ -89,10 +89,7 @@ export class OrdersComponent implements OnInit {
   changeOrderStatus(orderId: number, status: string): void {
     this.api
       .execute(this.adminService.changeOrderStatus(orderId, status), {
-        successMessage: UPDATE_ORDER_STATUS_SUCCESS.replace(
-          '#',
-          orderId.toString(),
-        ),
+        successMessage: UPDATE_ITEM_SUCCESS.replace('#', 'Order status'),
         errorMessage: HTTP_REQUEST_ERROR,
       })
       .subscribe(() => this.getPlacedOrders());

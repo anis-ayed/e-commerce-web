@@ -12,7 +12,7 @@
   </div>
 </div>
 @defer (when products.length) {
-  <mat-grid-list cols="4" rowHeight="2:2">
+  <mat-grid-list cols="4" rowHeight="2:3">
     @for (product of products; track product.id) {
       <mat-grid-tile>
         <app-product [product]="product"
