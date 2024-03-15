@@ -34,6 +34,7 @@ import { RouterLink } from '@angular/router';
 import { CustomerService } from '../../services/customer.service';
 import { ProductComponent } from '../../../shared/components/product/product.component';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { AlertErrorComponent } from '../../../shared/components/alert-error/alert-error.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -56,6 +57,7 @@ import { MatGridList, MatGridTile } from '@angular/material/grid-list';
     ProductComponent,
     MatGridList,
     MatGridTile,
+    AlertErrorComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',

@@ -33,6 +33,7 @@ import { MatIcon } from '@angular/material/icon';
 import { debounceTime, delay, of, switchMap } from 'rxjs';
 import { ProductComponent } from '../../../shared/components/product/product.component';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { AlertErrorComponent } from '../../../shared/components/alert-error/alert-error.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -55,6 +56,7 @@ import { MatGridList, MatGridTile } from '@angular/material/grid-list';
     ProductComponent,
     MatGridList,
     MatGridTile,
+    AlertErrorComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -92,6 +94,7 @@ export class DashboardComponent implements OnInit {
     this.api
       .execute(this.adminService.getAllProducts(), {
         errorMessage: GET_PRODUCTS_ERROR,
+        spinner: true,
       })
       .subscribe((data: Product[]) => {
         this.products = [];

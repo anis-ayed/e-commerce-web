@@ -9,12 +9,16 @@ import { UserStorageService } from '../../services/storage/user-storage.service'
 import { Order } from '../../models/Order';
 import { PlaceOrder } from '../../models/PlaceOrder';
 import { OrderedProduct } from '../../models/OrderedProduct';
+import { Review } from '../../models/Review';
+import { ProductDetails } from '../../models/ProductDetails';
+import { Wish } from '../../models/Wish';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CustomerService {
   constructor(private http: HttpClient) {}
+
   getAllProducts(): Observable<Product[]> {
     return this.http
       .get<Product[]>(CUSTOMER_BASE_URI + '/products', {
@@ -95,5 +99,33 @@ export class CustomerService {
         headers: createAuthorizationHeaders(),
       },
     );
+  }
+
+  setReview(review: FormData): Observable<Review> {
+    return this.http.post<Review>(CUSTOMER_BASE_URI + `/review`, review, {
+      headers: createAuthorizationHeaders(),
+    });
+  }
+
+  getProductDetailsById(productId: number): Observable<ProductDetails> {
+    return this.http.get<ProductDetails>(
+      CUSTOMER_BASE_URI + `/products/${productId}`,
+      {
+        headers: createAuthorizationHeaders(),
+      },
+    );
+  }
+
+  addProductToWishList(wish: Wish): Observable<Wish> {
+    return this.http.post<Wish>(CUSTOMER_BASE_URI + `/wish-list`, wish, {
+      headers: createAuthorizationHeaders(),
+    });
+  }
+
+  getAllWishListByUserId(): Observable<Wish[]> {
+    const userId: number = UserStorageService.getUserId();
+    return this.http.get<Wish[]>(CUSTOMER_BASE_URI + `/wish-list/${userId}`, {
+      headers: createAuthorizationHeaders(),
+    });
   }
 }

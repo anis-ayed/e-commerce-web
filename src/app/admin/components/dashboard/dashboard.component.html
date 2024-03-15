@@ -11,7 +11,7 @@
     </form>
   </div>
 </div>
-@defer (when products.length) {
+@if (products.length) {
   <mat-grid-list cols="4" rowHeight="2:3">
     @for (product of products; track product.id) {
       <mat-grid-tile>
@@ -20,8 +20,7 @@
       </mat-grid-tile>
     }
   </mat-grid-list>
-} @loading {
-  <div class="container">
-    <H2 style="display: flex; justify-self: center">Loading...</H2>
-  </div>
+}
+@if (api.hasError) {
+  <app-alert-error [message]="'Products not found!'" />
 }

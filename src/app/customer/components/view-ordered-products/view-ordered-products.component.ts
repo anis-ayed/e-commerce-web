@@ -1,5 +1,5 @@
 import { Component, OnInit, signal, WritableSignal } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CustomerService } from '../../services/customer.service';
 import { Api } from '../../../shared/requests-api';
 import { OrderedProduct } from '../../../models/OrderedProduct';
@@ -21,7 +21,6 @@ export class ViewOrderedProductsComponent implements OnInit {
 
   constructor(
     private customerService: CustomerService,
-    private router: Router,
     private activateRoute: ActivatedRoute,
   ) {}
 

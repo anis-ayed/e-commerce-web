@@ -25,17 +25,21 @@
 
   <mat-card-footer>
     @if (isAdminLoggedIn) {
-        <button mat-raised-button color="primary"
-                [routerLink]="'/admin/faq/' + product().id">FAQ
-        </button>
-        <button mat-raised-button color="accent"
-                [routerLink]="'/admin/products/' + product().id">Update
-        </button>
-        <button mat-raised-button color="warn" (click)="delete()">Delete
-        </button>
+      <button mat-raised-button color="primary"
+              [routerLink]="'/admin/faq/' + product().id">FAQ
+      </button>
+      <button mat-raised-button color="accent"
+              [routerLink]="'/admin/products/' + product().id">Update
+      </button>
+      <button mat-raised-button color="warn" (click)="delete()">Delete
+      </button>
     } @else {
       <button mat-raised-button color="primary"
-             (click)="addToCart()" >Add to cart
+              (click)="addToCart()">Add to cart
+      </button>
+      <button mat-raised-button
+              [routerLink]="'/customer/products/' + product().id"
+      >View details
       </button>
     }
   </mat-card-footer>

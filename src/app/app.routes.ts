@@ -71,6 +71,13 @@ export const routes: Routes = [
             '../app/admin/components/post-product-faq/post-product-faq.component'
           ).then(c => c.PostProductFaqComponent),
       },
+      {
+        path: 'analytics',
+        loadComponent: () =>
+          import('../app/admin/components/analytics/analytics.component').then(
+            c => c.AnalyticsComponent,
+          ),
+      },
     ],
   },
   {
@@ -118,6 +125,20 @@ export const routes: Routes = [
             '../app/customer/components/review-ordered-product/review-ordered-product.component'
           ).then(c => c.ReviewOrderedProductComponent),
       },
+      {
+        path: 'products/:productId',
+        loadComponent: () =>
+          import(
+            '../app/customer/components/view-product-details/view-product-details.component'
+          ).then(c => c.ViewProductDetailsComponent),
+      },
+      {
+        path: 'wish-list',
+        loadComponent: () =>
+          import(
+            '../app/customer/components/wish-list/wish-list.component'
+          ).then(c => c.WishListComponent),
+      },
     ],
   },
   {
@@ -129,6 +150,13 @@ export const routes: Routes = [
     path: 'sign-up',
     loadComponent: () =>
       import('./signup/signup.component').then(c => c.SignupComponent),
+  },
+  {
+    path: 'track-order',
+    loadComponent: () =>
+      import('./tracking-order/tracking-order.component').then(
+        c => c.TrackingOrderComponent,
+      ),
   },
   {
     path: '**',
