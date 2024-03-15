@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="product-card">
+    <div class="product-image">
+      <img [src]="product().processedImg" alt="{{product().name}} image">
+    </div>
+    <div class="product-details">
+      <h2>Name: {{product().name}}</h2>
+      <p>Description: {{product().description}}</p>
+      <p>Category: {{product().categoryName}}</p>
+      <p>Price: {{product().price}}</p>
+      <mat-icon class="heart-icon"
+        style="cursor: pointer; margin-top: 10px" (click)="addProductToWishList()">favorite_border</mat-icon>
+    </div>
+  </div>
+
+  @if (reviews().length) {
+    <h1 class="section-heading">Customer Reviews</h1>
+    <div class="review-list">
+      <div class="center-container">
+        @for(review of reviews(); track review.id) {
+          <div class="review-image">
+            @if(review.img) {
+              <img [src]="review.img" alt="{{review.description}}" class="small-image">
+            }
+          </div>
+
+          <div class="review-details">
+            <h2>{{review.description}}</h2>
+            <div class="details-row">
+              <p class="rating">Rating: {{review.rating}}</p>
+              <p class="username">Username: {{review.username}}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+  @if(FAQS().length) {
+    <h1 class="section-heading">Frequently asked questions</h1>
+    <div class="faq-list">
+      <div class="center-container">
+        @for (faq of FAQS(); track faq.id) {
+          <div class="faq-details">
+            <p class="question">Question:</p>
+            <p class="question-text">{{ faq.question }}</p>
+            <p class="answer">Answer:</p>
+            <p class="answer-text">{{ faq.answer }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
+
+

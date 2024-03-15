@@ -1,0 +1,17 @@
+.error {
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0;
+  }
+  mat-icon {
+    margin-right: 10px;
+  }
+  background-color: #f8d7da;
+  color: #a90612;
+  border: 1px solid #f5c6cb;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-weight: bold;
+  border-radius: 5px;
+}

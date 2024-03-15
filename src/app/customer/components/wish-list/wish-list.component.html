@@ -1,0 +1,26 @@
+<div class="container">
+  @for (product of wishList(); track product.id) {
+    <div class="product-card">
+      <div class="product-image">
+        <img [src]="product.returnedImg" alt="{{product.productName}} image">
+      </div>
+      <div class="product-details">
+        <h2>{{product.productName}}</h2>
+        <p class="description">Description: {{product.productDescription}}</p>
+        <p class="price">Price: {{product.price}}</p>
+
+        <div class="actions">
+          <button mat-raised-button
+                  [routerLink]="'/customer/products/' + product.id"
+          >View details
+          </button>
+          <button mat-raised-button color="primary"
+                  (click)="addToCart(product.id)">Add to cart
+          </button>
+        </div>
+
+      </div>
+    </div>
+  }
+
+</div>

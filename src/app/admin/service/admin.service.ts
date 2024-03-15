@@ -8,6 +8,7 @@ import { Product } from '../../models/Product';
 import { Coupon } from '../../models/Coupon';
 import { Order } from '../../models/Order';
 import { FAQ } from '../../models/FAQ';
+import { Analytics } from '../../models/Analytics';
 
 @Injectable({
   providedIn: 'root',
@@ -105,6 +106,12 @@ export class AdminService {
 
   getProductById(productId: number): Observable<Product> {
     return this.http.get<Product>(ADMIN_BASE_URI + '/products/' + productId, {
+      headers: createAuthorizationHeaders(),
+    });
+  }
+
+  getAnalytics(): Observable<Analytics> {
+    return this.http.get<Analytics>(ADMIN_BASE_URI + '/orders/analytics', {
       headers: createAuthorizationHeaders(),
     });
   }

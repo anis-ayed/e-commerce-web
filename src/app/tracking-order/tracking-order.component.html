@@ -1,0 +1,19 @@
+<div class="container">
+  <form [formGroup]="trackingForm" (ngSubmit)="searchOrderByTrackingId()" class="search-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Enter Tracking Id to search</mat-label>
+      <input matInput type="text" formControlName="trackingId" required>
+      <button mat-button matSuffix color="primary" [disabled]="trackingForm.invalid">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  @if (order()) {
+    <pre>
+    {{ order() | json }}
+  </pre>
+  }
+  @if (api.hasError) {
+    <app-alert-error [message]="'Order not found!'"></app-alert-error>
+  }
+</div>

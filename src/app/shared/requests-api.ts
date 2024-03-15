@@ -38,10 +38,10 @@ export class Api<T> {
   public execute(obs: Observable<T>, configApi: ConfigApi): Observable<T> {
     if (obs) {
       if (configApi.spinner) this.spinner.show();
-      this.updateState(true, false);
+      this.updateState(true, false, false);
       this.action$ = obs.pipe(
         catchError(error => {
-          this.hasError = true;
+          this.updateState(false, true, true);
           if (configApi.spinner) this.spinner.hide();
           const message: string = error.error?.message
             ? `${error.error?.message}`
@@ -51,11 +51,11 @@ export class Api<T> {
             SNACKBAR_ACTION.CLOSE,
             SNACKBAR_ERROR_CONFIGURATION,
           );
-          return throwError(error);
+          return throwError(() => error);
         }),
         map(response => {
           // Handle API success
-          this.updateState(false, true);
+          this.updateState(false, true, false);
           if (configApi.successMessage)
             this.showNotification(
               configApi.successMessage,
@@ -77,10 +77,16 @@ export class Api<T> {
    * Helper method to update the progress and completion state
    * @param progress - Boolean indicating whether the API action is in progress
    * @param isFinished - Boolean indicating whether the API action is finished
+   * @param hasError - Boolean indicating whether the API action has error
    */
-  private updateState(progress: boolean, isFinished: boolean) {
+  private updateState(
+    progress: boolean,
+    isFinished: boolean,
+    hasError: boolean,
+  ) {
     this.progress = progress;
     this.isFinished = isFinished;
+    this.hasError = hasError;
   }
 
   /**
